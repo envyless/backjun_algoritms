@@ -1,0 +1,20 @@
+#include<stdio.h>
+int main(){
+    int n, a = 0, b = 0;
+		long long int  div = 1, mul = 1;
+		scanf("%d", &n);
+		for (int i = 0; i < n; i++) {
+			scanf("%d", &a);
+			scanf("%d", &b);
+			if (a > b - a && a != b)
+				a = b - a;
+			for (int j = 1; j < a+1; j++) {
+				mul *= b;
+				div *= j;
+				b--;
+			}
+			printf("%d\n", mul/div);
+			div = 1;
+			mul = 1;
+        }
+}
