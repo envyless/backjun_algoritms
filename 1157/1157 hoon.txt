@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+	int count[26] = { 0, }, max = 0, test = 0;;
+	string n;
+	cin >> n;
+	int len = n.length();
+	for (int i = 0; i < len; i++) {
+		if (n[i] > 96)
+			count[n[i] - 97]++;
+		else
+			count[n[i] - 65]++;
+
+	}
+	for (int k = 0; k < 26; k++) {
+		if (count[k] >= max) {
+			if (max == count[k]) {
+				test = count[k];
+			}
+			max = count[k];
+			}
+		}
+	
+	if (test == max) {
+		printf("?");
+	}
+	else {
+		for (int k = 0; k < 26; k++) {
+			if (count[k] == max){
+			max = k;
+                break;
+            }
+		}
+        printf("%c", max+65);
+	}
+		
+    
+}
+
