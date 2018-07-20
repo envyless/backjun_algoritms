@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+	
+	long long int s, n =0, i=1 ;
+	cin >> s;
+	
+	while (s >=i) {
+			s -= i;
+			n++;
+            i++;
+		}
+	
+	cout << n;
+}
