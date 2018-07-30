@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+    int year[12] = { 31,28,31,30,31,30,31,31,30,31,30,31};
+    int y=0,d=0,day=0;
+    scanf("%d %d",&y,&d);
+    for(int i=1;i<y;i++){
+        if(y==1){
+            day=d;
+            break;
+        }
+            else day+=year[i-1];
+    }
+    if((day+d)%7==1)
+        printf("MON");
+    else if((day+d)%7==2)
+        printf("TUE");
+    else if((day+d)%7==3)
+        printf("WED");
+    else if((day+d)%7==4)
+        printf("TUE");
+    else if((day+d)%7==5)
+        printf("FRI");
+    else if((day+d)%7==6)
+        printf("SAT");
+    else if((day+d)%7==0)
+        printf("SUN");
+}
