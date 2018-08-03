@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include "math.h"
+
+using namespace std;
+int gong(int m,int n) {
+	int mul = 1;
+	int x = m, y = n;
+	for(int i = 2; i <= (m>n ? m : n); i++) {
+		if (x%i == 0 && y%i == 0) {
+			mul *= i;
+			x = x / i;
+			y = y / i;
+		}
+	}
+	mul = mul * x*y;
+	return mul;
+}
+int main() {
+	int k, m, n, x, y,mul;
+	cin >> k;
+	for (int i = 0; i < k; i++) {
+		cin >> m >> n>>x>>y;
+        mul=gong(m, n);
+		while (x != y && x <= mul) {
+			if (x < y)
+				x += m;
+			else
+				y += n;
+		}
+		if (x != y)
+			cout << "-1" << endl;
+		else
+			cout << x << endl;	
+		}
+}
