@@ -1,0 +1,38 @@
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<vector>
+#include<algorithm>
+#include<tuple>
+using namespace std;
+struct grade {
+	string name;
+	int kor;
+};
+bool check(const grade &a, const grade &b) {
+	if (a.kor < b.kor)
+		return true;
+	else if (a.kor == b.kor)
+		return false;
+	return false;
+}
+
+int main()
+{
+	
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	int n;
+	string x;
+	int s;
+	cin >> n;
+	vector<grade> a;
+	grade gr;
+	for (int i = 0; i < n; i++) {
+		cin >> gr.kor >> gr.name;
+		a.push_back(gr);
+	}
+	stable_sort(a.begin(), a.end(),check);
+	for (int i = 0; i < n; i++)
+		cout << a[i].kor <<' '<<a[i].name << "\n";
+}
