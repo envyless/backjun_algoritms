@@ -1,0 +1,20 @@
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<vector>
+#include<list>
+#include <set>
+#include<algorithm>
+#include<queue>
+#include<deque>
+
+using namespace std;
+int main()
+{
+	long long int n,sum=0;
+	cin >> n;
+	for (int i = 1; i < n; i++) {
+		sum += (n+1)*i;
+	}
+	cout << sum;
+}
