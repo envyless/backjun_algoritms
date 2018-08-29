@@ -1,0 +1,60 @@
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<vector>
+#include<list>
+#include <set>
+#include<algorithm>
+#include<queue>
+#include<deque>
+
+using namespace std;
+string s[101];
+int ga(int n);
+int se(int n);
+int main()
+{
+	
+	int n;
+	cin >> n;
+	for(int i=0;i<n;i++)
+		cin >> s[i];
+	cout << ga(n) << ' ' << se(n);
+	
+}
+int ga(int n) {
+	int answer = 0;
+	for (int i = 0; i < n; i++) {
+		int count = 0;
+		for (int j = 0; j < n; j++) {
+			if (s[i][j] == '.')
+				count++;
+			else if (s[i][j] == 'X'&&count >= 2) {
+				answer++;
+				count = 0;
+			}
+			else count = 0;
+		}
+		if (count >= 2)
+			answer++;
+	}
+	return answer;
+}
+int se(int n) {
+	int answer = 0;
+	for (int i = 0; i < n; i++) {
+		int count = 0;
+		for (int j = 0; j < n; j++) {
+			if (s[j][i] == '.')
+				count++;
+			else if (s[j][i] == 'X'&&count >= 2) {
+				answer++;
+				count = 0;
+			}
+			else count = 0;
+		}
+		if (count >= 2)
+			answer++;
+	}
+	return answer;
+}

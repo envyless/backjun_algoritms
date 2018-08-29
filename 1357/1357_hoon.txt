@@ -1,0 +1,28 @@
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<vector>
+#include<list>
+#include <set>
+#include<algorithm>
+#include<queue>
+#include<deque>
+
+using namespace std;
+
+int rev(string s);
+int main()
+{
+	string s,k;
+	cin >> s >> k;
+	int sum = rev(s) + rev(k);
+	string a = to_string(sum);
+	cout << rev(a);
+}
+int rev(string s) {
+	int sum = 0;
+	for (int i = s.length() - 1; i >= 0;i--) {
+		sum += (s[i] - '0')*pow(10, i);
+	}
+	return sum;
+}
