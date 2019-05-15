@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include<iostream>
+#include<string>
+#include<cmath>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+
+int main() {
+	int n, arr[1001] = { 0 }, dp[1001] = { 0 }, maxi = 0;
+	cin >> n; // 카드의 개수
+	for (int i = 1; i <= n; i++) 
+		cin >> arr[i]; // 카드의 정수
+	for (int i = 1; i <= n; i++) {
+		for (int j = 0; j < i; j++) {
+			if (arr[j] <arr[i]) {
+				dp[i] = max(dp[i], dp[j]+1 );
+			}
+			
+		}
+		maxi = max(dp[i], maxi);
+	}
+	cout << maxi;
+}
