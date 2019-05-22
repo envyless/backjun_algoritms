@@ -1,0 +1,14 @@
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+using namespace std;
+
+int main() {
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	int n; 
+	cin >> n;
+	long long int ans = pow(2, n);
+	ans = pow(ans + 1, 2);
+	cout << ans;
+}
