@@ -1,0 +1,19 @@
+#include<iostream>
+
+using namespace std;
+
+int main() {
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	int e, f, c, ans = 0, x;
+	cin >> e >> f >> c;
+		e += f;
+	while (e / c != 0) {
+		x = e / c;
+		ans += x;
+		e %= c;
+		e += x;
+	}
+
+	cout << ans;
+}
