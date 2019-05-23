@@ -1,0 +1,15 @@
+#include<iostream>
+
+using namespace std;
+
+int main() {
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	int A, B, C;
+	cin >> A >> B >> C;
+	if(B-A>C-B){
+        cout<<B - A-1;
+        return 0;
+    }else 
+        cout<<C-B-1;
+}
