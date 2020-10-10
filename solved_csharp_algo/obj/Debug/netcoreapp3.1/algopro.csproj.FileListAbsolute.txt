@@ -10,3 +10,15 @@
 /Users/a243/GitRepos/algopro/obj/Debug/netcoreapp3.1/algopro.dll
 /Users/a243/GitRepos/algopro/obj/Debug/netcoreapp3.1/algopro.pdb
 /Users/a243/GitRepos/algopro/obj/Debug/netcoreapp3.1/algopro.genruntimeconfig.cache
+/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/bin/Debug/netcoreapp3.1/algopro.deps.json
+/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/bin/Debug/netcoreapp3.1/algopro.runtimeconfig.json
+/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/bin/Debug/netcoreapp3.1/algopro.runtimeconfig.dev.json
+/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/bin/Debug/netcoreapp3.1/algopro.dll
+/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/bin/Debug/netcoreapp3.1/algopro.pdb
+/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/obj/Debug/netcoreapp3.1/algopro.csprojAssemblyReference.cache
+/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/obj/Debug/netcoreapp3.1/algopro.AssemblyInfoInputs.cache
+/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/obj/Debug/netcoreapp3.1/algopro.AssemblyInfo.cs
+/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/obj/Debug/netcoreapp3.1/algopro.csproj.CoreCompileInputs.cache
+/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/obj/Debug/netcoreapp3.1/algopro.dll
+/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/obj/Debug/netcoreapp3.1/algopro.pdb
+/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/obj/Debug/netcoreapp3.1/algopro.genruntimeconfig.cache

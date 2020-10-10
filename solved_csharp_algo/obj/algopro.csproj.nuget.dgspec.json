@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/a243/GitRepos/algopro/algopro.csproj": {}
+    "/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/algopro.csproj": {}
   },
   "projects": {
-    "/Users/a243/GitRepos/algopro/algopro.csproj": {
+    "/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/algopro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/a243/GitRepos/algopro/algopro.csproj",
+        "projectUniqueName": "/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/algopro.csproj",
         "projectName": "algopro",
-        "projectPath": "/Users/a243/GitRepos/algopro/algopro.csproj",
+        "projectPath": "/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/algopro.csproj",
         "packagesPath": "/Users/a243/.nuget/packages/",
-        "outputPath": "/Users/a243/GitRepos/algopro/obj/",
+        "outputPath": "/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

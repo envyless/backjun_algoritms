@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8WDLOkJzgXcZeXTKDMcKoZiqzvfyn/TrTWwv+Xuq3pwcTA5Ehw2qYmGLumS31+NYlMSfWaSWYIFcXZxifGPekQ==",
+  "dgSpecHash": "L0ECx0F7xuYreGzMkqn6S408Rjzu1ROdDm1tBoCaA91NAsjBkHPxohwWaG6vhu/mQMzDswOJA6COJ5r2P836Gw==",
   "success": true,
-  "projectFilePath": "/Users/a243/GitRepos/algopro/algopro.csproj",
+  "projectFilePath": "/Users/a243/GitRepos/algopro/backjun_algoritms/solved_csharp_algo/algopro.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
