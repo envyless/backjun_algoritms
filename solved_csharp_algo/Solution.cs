@@ -1,94 +1,207 @@
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using System;
 
 public class Solution {
-    public int solution(int bridge_length, int weight, int[] truck_weights) {        
-        Queue<(int,int)> alist = new Queue<(int,int)>();
-        var currentWeight = 0;
-        var time = 1;
-        for(int i = 0; i < truck_weights.Length; ++i ,time++)
+
+    private int SortFunc( (int,int) x, (int,int) y )
+    {
+        return 0;
+    }
+    public int solution(int[,] jobs) {
+
+
+        int answer = 0;
+        List<(int,int)> sortque = new List<(int, int)>(jobs.Length);
+        
+        for(int i = 0; i < jobs.GetLength(0); ++i)
         {
-            var truck = truck_weights[i];
+            sortque.Add( (jobs[i,0], jobs[i,1]) );
+        }
 
-            bool isAbleToPath = currentWeight + truck <= weight;
-            
-            while(!isAbleToPath && alist.Count > 0)
+        var jobque = sortque.OrderBy((x)=>{            
+            return x.Item1;
+        }).ThenBy((x2)=>{
+            return x2.Item2;
+        }).ToList();
+
+        var procQue = new Queue<ProcData>();
+        int currentTime = 0;
+        var last_cnt = jobque.Count() - 1;
+        int index = 0;
+
+        do{
+            // do proc
+            if(procQue.Count > 0)
             {
-                var first = alist.Dequeue(); // 1, 7        // 3, 4    
-                var needtime = (bridge_length - (time - first.Item1)); // 1 - 1 + 2  = 2     //  2(걸리는 시간) - (4 - 3)(걸린 시간)
-                if(needtime > 0)
-                    time += needtime;
 
-                currentWeight -= first.Item2;                    
-                isAbleToPath = currentWeight + truck <= weight;
+                // for answer
+                var pj = procQue.Dequeue();
+                var time_to_proc_from_req = currentTime + pj.procTime - pj.req;
+                answer += time_to_proc_from_req;
+                currentTime += pj.procTime;
             }
 
-            if(isAbleToPath)
+            for(; index < jobque.Count(); ++index)
             {
-                currentWeight += truck;
-                alist.Enqueue((time, truck)); // 1, 7 ,     // 3, 4   // 4, 5
-                
-            }  
-        }
-        if(alist.Count > 0)
-        {
-            while(alist.Count > 0)
-            {
-                var first = alist.Dequeue(); // 1, 7        // 3, 4    
-                var needtime = (bridge_length - (time - first.Item1)); // 1 - 1 + 2  = 2     //  2(걸리는 시간) - (4 - 3)(걸린 시간)
-                if(needtime > 0)
-                    time += needtime;
-                currentWeight -= first.Item2;                    
-                //isAbleToPath = currentWeight + truck <= weight;
+                var j = jobque[index];
+                if(j.Item1 <= currentTime)
+                {
+                    procQue.Enqueue( new ProcData(j));
+                    procQue = new Queue<ProcData>(procQue.OrderBy((x)=>{
+                        return currentTime - x.req + x.procTime; 
+                    }));
+                }
+                else{
+                    if(procQue.Count == 0)
+                    {
+
+                        currentTime = j.Item1;
+                        procQue.Enqueue(new ProcData(j));
+                        procQue = new Queue<ProcData>(procQue.OrderBy((x)=>{
+                        return currentTime - x.req + x.procTime; 
+                    }));
+                        ++index;
+                    }
+                    break;
+                }
             }
+
+
+        }while(sortque.Count() > index || procQue.Count > 0);    
+
         
+        return answer / jobs.GetLength(0);
+        
+        //작업 시작 시간 0 
+        // 3 - 0 = 3
+        
+        //작업 시작 시간 3
+        // 9(작업소요시간) + 3(작업시작시간) - 1(요청시간) = 11
+        
+        //작업 시작 시간 12
+        // 6 + 12 - 2(요청시간) = 16
+        
+        //요청시간의 길이가 제일 짧은 선택지를 선택해 나아간다.
+        
+        //검색 현재 선택지 중 다음 요청시간을 짧게 할 수 있는 것은?        
+    }
+}
+
+public class ProcData : IComparable{
+    public int req;
+    public int procTime;
+
+    public ProcData((int,int) data)
+    {
+        req = data.Item1;
+        procTime = data.Item2;
+    }
+
+    public int CompareTo(object obj)
+    {
+        var proc2 = obj as ProcData;
+        if(proc2 == null)
+            return 0;
+
+        if(proc2.procTime < this.procTime)
+            return 1;
+
+        if(proc2.req > this.req)
+            return 1;
+        
+        return -1;
+    }
+}
+
+class PriorityQueue<T> where T : IComparable
+{
+    private List<T> list;
+    public int Count { get { return list.Count; } }
+    public readonly bool IsDescending;
+
+    public PriorityQueue()
+    {
+        list = new List<T>();
+    }
+
+    public PriorityQueue(bool isdesc)
+        : this()
+    {
+        IsDescending = isdesc;
+    }
+
+    public PriorityQueue(int capacity)
+        : this(capacity, false)
+    { }
+
+    public PriorityQueue(IEnumerable<T> collection)
+        : this(collection, false)
+    { }
+
+    public PriorityQueue(int capacity, bool isdesc)
+    {
+        list = new List<T>(capacity);
+        IsDescending = isdesc;
+    }
+
+    public PriorityQueue(IEnumerable<T> collection, bool isdesc)
+        : this()
+    {
+        IsDescending = isdesc;
+        foreach (var item in collection)
+            Enqueue(item);
+    }
+
+
+    public void Enqueue(T x)
+    {
+        list.Add(x);
+        int i = Count - 1;
+
+        while (i > 0)
+        {
+            int p = (i - 1) / 2;
+            if ((IsDescending ? -1 : 1) * list[p].CompareTo(x) <= 0) break;
+
+            list[i] = list[p];
+            i = p;
         }
-         
-        
 
-        Console.WriteLine("time : "+time);
- 
-            //첫 트럭 옴
-            //7
-            //현재 다리 사용 상태, 사용 가능한가?
-            //사용 가능 다리에 집어넣음
+        if (Count > 0) list[i] = x;
+    }
 
-            //4, 
-            //현재 다리 사용 가능?
-            //불가능 대기.
+    public T Dequeue()
+    {
+        T target = Peek();
+        T root = list[Count - 1];
+        list.RemoveAt(Count - 1);
 
-            //7 빠져나가기
-            //7이 빠져나가고 나면 걸린시간 시점0(0에 들어감)
-            //7이 나오고 나면 현재 시점은 bridge_length 만큼 늘어남
+        int i = 0;
+        while (i * 2 + 1 < Count)
+        {
+            int a = i * 2 + 1;
+            int b = i * 2 + 2;
+            int c = b < Count && (IsDescending ? -1 : 1) * list[b].CompareTo(list[a]) < 0 ? b : a;
 
-            //현재 시간 t = 2
-            //4가 들어간 t= t_0 + 1 = 3
+            if ((IsDescending ? -1 : 1) * list[c].CompareTo(root) >= 0) break;
+            list[i] = list[c];
+            i = c;
+        }
 
+        if (Count > 0) list[i] = root;
+        return target;
+    }
 
-            //5는 집어넣을 수 있는가?
-            //있음. t = t_4 + 1 = 4
-            
-            //6을 넣어 보려고 해봄
-            //대기
-            //대기시 해야하는 일
-            //가장 앞에 트럭 뺴기
-            //걸린 시간 = 들어간 시점 - 현재 시간 + 길이 = 3 - 4 + 2 = 1
-            //현재시간 += 걸린시간
+    public T Peek()
+    {
+        if (Count == 0) throw new InvalidOperationException("Queue is empty.");
+        return list[0];
+    }
 
-            //6을 넣을 수 있는가?
-            //대기
-            //대기시 가장 앞인 5를 빼야함.
-            //get first(5)
-            //4 - 5 + 2 = 1
-            //1
-            //현재 시간 += 걸린시간
-
-            //6 넣음.
-
-            ///모든 루프가 끝나고, 꺼내기 로직
-            //들어간 시점, 6 - 6 + 2 = 2 
-
-        return time;
+    public void Clear()
+    {
+        list.Clear();
     }
 }
