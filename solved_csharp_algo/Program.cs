@@ -9,7 +9,7 @@ class Program
         var s = new Solution();
         
         var a = s.solution(new int[,]
-        {{0, 5}, {1, 2}, {5, 5}}
+        {{24, 10}, {28, 39}, {43, 20}, {37, 5}, {47, 22}, {20, 47}, {15, 2}, {15, 34}, {35, 43}, {26, 1}}
         );
         Console.WriteLine("answer : "+a);
     }

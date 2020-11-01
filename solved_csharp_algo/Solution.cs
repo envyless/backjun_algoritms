@@ -26,7 +26,7 @@ public class Solution {
             return x2.Item2;
         }).ToList();
 
-        var procQue = new Queue<ProcData>();
+        var procQue = new PriorityQueue<ProcData>();
         int currentTime = 0;
         var last_cnt = jobque.Count() - 1;
         int index = 0;
@@ -34,8 +34,7 @@ public class Solution {
         do{
             // do proc
             if(procQue.Count > 0)
-            {
-
+            {  
                 // for answer
                 var pj = procQue.Dequeue();
                 var time_to_proc_from_req = currentTime + pj.procTime - pj.req;
@@ -49,9 +48,6 @@ public class Solution {
                 if(j.Item1 <= currentTime)
                 {
                     procQue.Enqueue( new ProcData(j));
-                    procQue = new Queue<ProcData>(procQue.OrderBy((x)=>{
-                        return currentTime - x.req + x.procTime; 
-                    }));
                 }
                 else{
                     if(procQue.Count == 0)
@@ -59,9 +55,6 @@ public class Solution {
 
                         currentTime = j.Item1;
                         procQue.Enqueue(new ProcData(j));
-                        procQue = new Queue<ProcData>(procQue.OrderBy((x)=>{
-                        return currentTime - x.req + x.procTime; 
-                    }));
                         ++index;
                     }
                     break;
@@ -105,7 +98,9 @@ public class ProcData : IComparable{
         if(proc2 == null)
             return 0;
 
-        if(proc2.procTime < this.procTime)
+        if(proc2.procTime > this.procTime)
+            return -1;
+        else if(proc2.procTime < this.procTime)
             return 1;
 
         if(proc2.req > this.req)
